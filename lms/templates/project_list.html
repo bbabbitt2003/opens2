@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% block content %}
+	<h1>Projects</h1>
+		{% if request.user.is_authenticated %}
+			<div>
+			<h2>My Private Projects</h2>
+			{% for project in myPrivateProjects %}
+				{% include "project-detail.html" %}
+			{% endfor %}
+			<div>
+			<h2>My Public Projects</h2>
+			{% for project in myPublicProjects %}
+				{% include "project-detail.html" %}
+			{% endfor %}
+			<div>
+		{% else %}
+			<h2>All Projects</h2>		
+			{% for project in publicProjects %}
+				{% include "project-detail.html" %}
+			{% endfor %}
+		{% endif %}
+			
+{% endblock %}

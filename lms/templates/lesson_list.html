@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% block content %}
+	<h1>Lessons</h1>
+		{% if request.user.is_authenticated %}
+			<div>
+			<h2>My Private Lessons</h2>
+			{% for lesson in myPrivateLessons %}
+				{% include "lesson-detail.html" %}
+			{% endfor %}
+			<div>
+			<h2>My Public Lesson</h2>
+			{% for lesson in myPublicLessons %}
+				{% include "lesson-detail.html" %}
+			{% endfor %}
+			<div>
+		{% else %}
+			<h2>All Lessons</h2>		
+			{% for lesson in publicLessons %}
+				{% include "lesson-detail.html" %}
+			{% endfor %}
+		{% endif %}
+			
+{% endblock %}

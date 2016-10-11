@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% block content %}
+	<h1>Tests</h1>
+		{% if request.user.is_authenticated %}
+			<div>
+			<h2>My Private Tests</h2>
+			{% for test in myPrivateTests %}
+				{% include "test-detail.html" %}
+			{% endfor %}
+			<div>
+			<h2>My Public Tests</h2>
+			{% for test in myPublicTests %}
+				{% include "test-detail.html" %}
+			{% endfor %}
+			<div>
+		{% else %}
+			<h2>All Tests</h2>		
+			{% for test in publicTests %}
+				{% include "test-detail.html" %}
+			{% endfor %}
+		{% endif %}
+			
+{% endblock %}
